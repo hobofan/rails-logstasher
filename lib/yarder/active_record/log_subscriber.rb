@@ -71,15 +71,15 @@ module Yarder
 
 
       def entry
-        entry = Yarder.log_entries[Thread.current]
-        unless entry
+        unless Yarder.log_entries[Thread.current]
           entry = Yarder::Event.new(Rails.logger, false)
           entry.fields['uuid'] = SecureRandom.uuid
           #TODO Should really move this into the base logger
-          entry.source ||= Socket.gethostname
+          entry.source = Socket.gethostname
           entry.type = "rails_json_log"
+          Yarder.log_entries[Thread.current] = entry
         end
-        entry
+        Yarder.log_entries[Thread.current]
       end
 
     end

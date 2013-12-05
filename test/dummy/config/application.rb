@@ -9,7 +9,7 @@ require "active_resource/railtie"
 require "rails/test_unit/railtie"
 
 Bundler.require
-require "rails_logstasher"
+require "rails-logstasher"
 
 module Dummy
   class Application < Rails::Application

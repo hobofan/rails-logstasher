@@ -1,8 +1,8 @@
-require 'rails_logstasher/core_ext/object/blank'
-require 'rails_logstasher/action_controller/log_subscriber'
-require 'rails_logstasher/action_view/log_subscriber'
-require 'rails_logstasher/active_record/log_subscriber' if defined?(ActiveRecord)
-require 'rails_logstasher/active_resource/log_subscriber' if defined?(ActiveResource)
+require 'rails-logstasher/core_ext/object/blank'
+require 'rails-logstasher/action_controller/log_subscriber'
+require 'rails-logstasher/action_view/log_subscriber'
+require 'rails-logstasher/active_record/log_subscriber' if defined?(ActiveRecord)
+require 'rails-logstasher/active_resource/log_subscriber' if defined?(ActiveResource)
 
 module RailsLogstasher
 
@@ -13,7 +13,7 @@ module RailsLogstasher
   # are JSON based rather than string based
   class Railtie < Rails::Railtie
 
-    initializer "rails_logstasher.swap_rack_logger_middleware" do |app|
+    initializer "rails-logstasher.swap_rack_logger_middleware" do |app|
       app.middleware.swap(Rails::Rack::Logger, RailsLogstasher::Rack::Logger, app.config.log_tags)
     end
 
@@ -40,7 +40,7 @@ module RailsLogstasher
     # registering themselves using a config option.
     config.after_initialize do
 
-      # Kludge the removal of the default LogSubscribers for the moment. We will use the rails_logstasher
+      # Kludge the removal of the default LogSubscribers for the moment. We will use the rails-logstasher
       # LogSubscribers (since they subscribe to the same hooks in the public methods) to create
       # a list of hooks we want to unsubscribe current subscribers from.
       modules = ["ActionController", "ActionView"]
@@ -57,7 +57,7 @@ module RailsLogstasher
         end
       end
 
-      # We then subscribe using the rails_logstasher versions of the default rails LogSubscribers
+      # We then subscribe using the rails-logstasher versions of the default rails LogSubscribers
       RailsLogstasher::ActionController::LogSubscriber.attach_to :action_controller
       RailsLogstasher::ActionView::LogSubscriber.attach_to :action_view
       RailsLogstasher::ActiveRecord::LogSubscriber.attach_to :active_record if defined?(ActiveRecord)

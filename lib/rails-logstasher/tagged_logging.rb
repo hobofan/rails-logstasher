@@ -1,6 +1,6 @@
-require 'rails_logstasher/core_ext/object/blank'
+require 'rails-logstasher/core_ext/object/blank'
 require 'logger'
-require 'rails_logstasher/logger'
+require 'rails-logstasher/logger'
 
 module RailsLogstasher
   # Wraps any standard Logger object to provide tagging capabilities.

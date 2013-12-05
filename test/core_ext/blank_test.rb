@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require 'rails_logstasher/core_ext/object/blank'
+require 'rails-logstasher/core_ext/object/blank'
 
 class EmptyTrue
   def empty?() true; end

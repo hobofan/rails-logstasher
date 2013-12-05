@@ -1,4 +1,4 @@
-require 'rails_logstasher/core_ext/object/blank'
+require 'rails-logstasher/core_ext/object/blank'
 
 module RailsLogstasher
   module ActionController

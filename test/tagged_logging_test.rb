@@ -1,5 +1,5 @@
-require 'rails_logstasher/logger'
-require 'rails_logstasher/tagged_logging'
+require 'rails-logstasher/logger'
+require 'rails-logstasher/tagged_logging'
 
 class TaggedLoggingTest < ActiveSupport::TestCase
   class MyLogger < RailsLogstasher::Logger

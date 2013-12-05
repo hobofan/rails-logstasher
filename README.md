@@ -10,7 +10,7 @@ JSON Based Replacement logging system for Ruby on Rails.
 This is an experimental gem to see how easy / difficult it is to completely replace the default Ruby 
 on Rails logging system with one based on outputting JSON messages.
 
-This gem will create JSON based log entries designed for consumption by Logstash (although being 
+This gem will create JSON based log entries designed for consumption by Logstash version 1.2 (although being
 JSON they can be read by other software). The JSON will contain the same information as can be found 
 in the default rails logging output.
 
@@ -64,18 +64,30 @@ end
 
 ## Logstash Configuration
 
-Yarder currently creates log entries with a hard-coded logtype of "rails_json_log" (This may change 
-in future and may become configurable) therefore your Logstash configuration file should be as 
-follows:
+Yarder creates log entries with a default type of "rails", therefore your Logstash
+configuration file should be as follows:
 
 ```
 input {
   file {
-    type => "rails_json_log"
+    type => "rails"
     path => "/var/www/rails/application-1/log/production.log" # Path to your log file
     format => "json_event"
   }
 }
+```
+
+The type can be configured via the application configuration "log_type" setting, like so:
+
+```
+module MyApp
+  class Application < Rails::Application
+
+    # Set a different type for the events
+    config.log_type = 'my_type'
+
+  end
+end
 ```
 
 You will need to edit the path to point to your application's log file. Because Yarder creates json 

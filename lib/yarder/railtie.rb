@@ -30,7 +30,8 @@ module Yarder
 
       # Take the current logger and replace it with itself wrapped by the
       # Yarder::TaggedLogging class
-      app.config.logger = Yarder::TaggedLogging.new(app.config.logger)
+      app.config.log_type = 'rails' unless app.config.respond_to? :log_type
+      app.config.logger = Yarder::TaggedLogging.new(app.config.logger, app.config.log_type)
     end
 
 

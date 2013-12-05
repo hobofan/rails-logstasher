@@ -5,11 +5,11 @@ require "rails_logstasher/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "rails-logstash"
+  s.name        = "rails-logstasher"
   s.version     = RailsLogstasher::VERSION
   s.authors     = ["Nadav Fischer"]
   s.email       = ["nadav.fischer@capriza.com"]
-  s.homepage    = "https://github.com/capriza/rails_logstasher"
+  s.homepage    = "https://github.com/capriza/rails-logstasher"
   s.summary     = "Lostash format replacement for Ruby on Rails logging system"
   s.description = "Replaces the default string based Ruby on Rails logging system with a Logstash based one"
 

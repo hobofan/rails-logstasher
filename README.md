@@ -1,13 +1,13 @@
 # RailsLogstasher
 
-[![Build Status](https://secure.travis-ci.org/capriza/rails_logstasher.png)](http://travis-ci.org/capriza/rails_logstasher)
-[![Coverage Status](https://coveralls.io/repos/capriza/rails_logstasher/badge.png?branch=master)](https://coveralls.io/r/capriza/rails_logstasher)
-[![Code Climate](https://codeclimate.com/github/capriza/rails_logstasher.png)](https://codeclimate.com/github/capriza/rails_logstasher)
-[![Dependency Status](https://gemnasium.com/capriza/rails_logstasher.png)](https://gemnasium.com/capriza/rails_logstasher)
+[![Build Status](https://secure.travis-ci.org/capriza/rails-logstasher.png)](http://travis-ci.org/capriza/rails-logstasher)
+[![Coverage Status](https://coveralls.io/repos/capriza/rails-logstasher/badge.png?branch=master)](https://coveralls.io/r/capriza/rails-logstasher)
+[![Code Climate](https://codeclimate.com/github/capriza/rails-logstasher.png)](https://codeclimate.com/github/capriza/rails-logstasher)
+[![Dependency Status](https://gemnasium.com/capriza/rails-logstasher.png)](https://gemnasium.com/capriza/rails-logstasher)
 
 Logstash Based Replacement logging system for Ruby on Rails.
 This is a fork from https://github.com/rurounijones/yarder.
-
+`
 This gem will create JSON based log entries designed for consumption by Logstash version 1.2.
 The JSON will contain the same information as can be found in the default rails logging output.
 
@@ -22,7 +22,7 @@ RailsLogstasher has been tested against Rails 3.2.16 on Ruby 1.9.3.
 Add this line to your Rails application's Gemfile:
 
 ```ruby
-gem 'rails_logstasher'
+gem 'rails-logstasher'
 ```
 
 ## Configuration
@@ -91,7 +91,7 @@ for nested JSON but logstash web does not.
 Thoughts, suggestions, opinions and contributions are welcome. 
 
 When contributing please make sure to run your tests with warnings enabled and make sure that
-rails_logstasher creates no warnings. (Warnings from other libraries like capybara etc. are ok)
+rails-logstasher creates no warnings. (Warnings from other libraries like capybara etc. are ok)
 
 ```
 RUBYOPT=-w rake

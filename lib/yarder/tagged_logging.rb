@@ -27,6 +27,7 @@ module Yarder
           @entry.message = msg
         end
         @entry.fields['severity'] = severity
+        @entry.type = @log_type
         process_tags(current_tags)
         process_tags(current_request_tags)
         #TODO Should we do anything with progname? What about source?
@@ -79,16 +80,21 @@ module Yarder
         Thread.current[:activesupport_tagged_logging_request_tags] ||= []
       end
 
+      def log_type=(log_type)
+        @log_type = log_type
+      end
+
     end
 
-    def self.new(logger)
+    def self.new(logger, log_type)
       # Ensure we set a default formatter so we aren't extending nil!
       logger.formatter ||= ActiveSupport::Logger::SimpleFormatter.new
       logger.formatter.extend Formatter
+      logger.formatter.log_type = log_type
       logger.extend(self)
     end
 
-    delegate :push_tags, :push_request_tags, :pop_tags, :clear_tags!, to: :formatter
+    delegate :push_tags, :push_request_tags, :pop_tags, :clear_tags!, :log_type=, to: :formatter
 
     def tagged(*tags)
       formatter.tagged(*tags) { yield self }

@@ -5,7 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/capriza/rails-logstasher.png)](https://codeclimate.com/github/capriza/rails-logstasher)
 [![Dependency Status](https://gemnasium.com/capriza/rails-logstasher.png)](https://gemnasium.com/capriza/rails-logstasher)
 
-Logstash Based Replacement logging system for Ruby on Rails.
+Logstash logging system for Ruby on Rails.
 This is a fork from https://github.com/rurounijones/yarder.
 
 This gem will create JSON based log entries designed for consumption by Logstash version 1.2.

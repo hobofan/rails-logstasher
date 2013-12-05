@@ -16,9 +16,9 @@ class AResourceLogSubscriberTest < ActiveSupport::TestCase
       mock.get "/people/1.json", {}, @matz
     end
 
-    Yarder::ActiveResource::LogSubscriber.attach_to :active_resource
-    Yarder.log_entries[Thread.current] = LogStash::Event.new
-    @log_entry = Yarder.log_entries[Thread.current]
+    RailsLogstasher::ActiveResource::LogSubscriber.attach_to :active_resource
+    RailsLogstasher.log_entries[Thread.current] = LogStash::Event.new
+    @log_entry = RailsLogstasher.log_entries[Thread.current]
   end
 
   def test_mandatory_fields_present

@@ -1,19 +1,19 @@
-require 'yarder/logger'
-require 'yarder/tagged_logging'
+require 'rails_logstasher/logger'
+require 'rails_logstasher/tagged_logging'
 
 class TaggedLoggingTest < ActiveSupport::TestCase
-  class MyLogger < Yarder::Logger
+  class MyLogger < RailsLogstasher::Logger
   end
 
   setup do
     @output = StringIO.new
-    @logger = Yarder::TaggedLogging.new(MyLogger.new(@output))
+    @logger = RailsLogstasher::TaggedLogging.new(MyLogger.new(@output))
   end
 
   test 'sets logger.formatter if missing and extends it with a tagging API' do
     logger = ::Logger.new(StringIO.new)
     # assert_nil logger.formatter #TODO This assertion is failing but I do not think it is end of the world
-    Yarder::TaggedLogging.new(logger)
+    RailsLogstasher::TaggedLogging.new(logger)
     assert_not_nil logger.formatter
     assert logger.formatter.respond_to?(:tagged)
   end

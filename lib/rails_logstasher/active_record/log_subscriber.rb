@@ -1,6 +1,6 @@
 require "securerandom"
 
-module Yarder
+module RailsLogstasher
   module ActiveRecord
     class LogSubscriber < ::ActiveSupport::LogSubscriber
 
@@ -74,8 +74,8 @@ module Yarder
       end
 
       def log_entry
-        Yarder.log_entries[Thread.current] ||
-          Yarder::Event.new(Rails.logger, false).tap do |entry|
+        RailsLogstasher.log_entries[Thread.current] ||
+          RailsLogstasher::Event.new(Rails.logger, false).tap do |entry|
           entry.fields['uuid'] = SecureRandom.uuid
           #TODO Should really move this into the base logger
           entry.source = Socket.gethostname

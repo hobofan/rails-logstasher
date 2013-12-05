@@ -7,9 +7,9 @@ class ARecordLogSubscriberTest < ActiveSupport::TestCase
   def setup
     super
     Widget.create
-    Yarder::ActiveRecord::LogSubscriber.attach_to :active_record
-    Yarder.log_entries[Thread.current] = LogStash::Event.new
-    @log_entry = Yarder.log_entries[Thread.current]
+    RailsLogstasher::ActiveRecord::LogSubscriber.attach_to :active_record
+    RailsLogstasher.log_entries[Thread.current] = LogStash::Event.new
+    @log_entry = RailsLogstasher.log_entries[Thread.current]
   end
 
   # TODO

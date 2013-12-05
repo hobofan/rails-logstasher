@@ -10,9 +10,9 @@ class AVLogSubscriberTest < ActiveSupport::TestCase
     lookup_context = ActionView::LookupContext.new(view_paths, {}, ["test"])
     renderer = ActionView::Renderer.new(lookup_context)
     @view = ActionView::Base.new(renderer, {})
-    Yarder::ActionView::LogSubscriber.attach_to :action_view
-    Yarder.log_entries[Thread.current] = LogStash::Event.new
-    @log_entry = Yarder.log_entries[Thread.current]
+    RailsLogstasher::ActionView::LogSubscriber.attach_to :action_view
+    RailsLogstasher.log_entries[Thread.current] = LogStash::Event.new
+    @log_entry = RailsLogstasher.log_entries[Thread.current]
   end
 
   def teardown

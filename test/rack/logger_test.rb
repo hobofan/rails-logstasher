@@ -3,7 +3,7 @@ require 'test_helper'
 # TODO These tests are fragile because they rely on the output being added
 # to the last line of the log file. See if there is a better way to do this
 class LoggerTest < ActiveSupport::IntegrationCase
-  class MyLogger < Yarder::Logger
+  class MyLogger < RailsLogstasher::Logger
     def flush(*)
     end
 
@@ -11,7 +11,7 @@ class LoggerTest < ActiveSupport::IntegrationCase
 
   setup do
     @output = StringIO.new
-    Rails.logger = Yarder::TaggedLogging.new(MyLogger.new(@output))
+    Rails.logger = RailsLogstasher::TaggedLogging.new(MyLogger.new(@output))
     visit('/widgets')
   end
 

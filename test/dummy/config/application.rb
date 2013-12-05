@@ -9,7 +9,7 @@ require "active_resource/railtie"
 require "rails/test_unit/railtie"
 
 Bundler.require
-require "yarder"
+require "rails_logstasher"
 
 module Dummy
   class Application < Rails::Application
@@ -55,7 +55,7 @@ module Dummy
     # parameters by using an attr_accessible or attr_protected declaration.
     # config.active_record.whitelist_attributes = true
 
-    config.logger = Yarder::Logger.new(Rails.root.join('log',"#{Rails.env}.log").to_s)
+    config.logger = RailsLogstasher::Logger.new(Rails.root.join('log',"#{Rails.env}.log").to_s)
 
     config.log_tags = ["Hello", :uuid, Proc.new { "Proc" }]
 

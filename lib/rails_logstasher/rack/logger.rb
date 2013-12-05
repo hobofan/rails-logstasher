@@ -1,4 +1,4 @@
-module Yarder
+module RailsLogstasher
 
   module Rack
 
@@ -13,7 +13,7 @@ module Yarder
         t1 = Time.now
         request = ActionDispatch::Request.new(env)
 
-        event = Yarder::Event.new(Rails.logger, true)
+        event = RailsLogstasher::Event.new(Rails.logger, true)
         event.message = "#{request.request_method} #{request.filtered_path} for #{request.ip}"
         event.fields['client_ip'] = request.ip
         event.fields['method'] = request.request_method
@@ -23,7 +23,7 @@ module Yarder
 
         event.add_tags_to_logger(request, @tags) if @tags
 
-        Yarder.log_entries[Thread.current] = event
+        RailsLogstasher.log_entries[Thread.current] = event
 
         status, headers, response = @app.call(env)
         [status, headers, response]
@@ -43,7 +43,7 @@ module Yarder
           event.write(true)
         end
 
-        Yarder.log_entries[Thread.current] = nil
+        RailsLogstasher.log_entries[Thread.current] = nil
       end
 
     end

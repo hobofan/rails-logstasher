@@ -1,4 +1,4 @@
-module Yarder
+module RailsLogstasher
   module ActiveResource
     class LogSubscriber < ::ActiveSupport::LogSubscriber
 
@@ -25,7 +25,7 @@ module Yarder
     private
 
       def entry
-        Yarder.log_entries[Thread.current]
+        RailsLogstasher.log_entries[Thread.current]
       end
 
     end

@@ -1,6 +1,6 @@
-require 'yarder/core_ext/object/blank'
+require 'rails_logstasher/core_ext/object/blank'
 
-module Yarder
+module RailsLogstasher
   module ActionController
     class LogSubscriber < ::ActiveSupport::LogSubscriber
       INTERNAL_PARAMS = %w(controller action format _method only_path)
@@ -67,7 +67,7 @@ module Yarder
     private
 
       def entry
-        Yarder.log_entries[Thread.current]
+        RailsLogstasher.log_entries[Thread.current]
       end
 
     end

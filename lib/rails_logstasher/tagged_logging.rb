@@ -1,18 +1,18 @@
-require 'yarder/core_ext/object/blank'
+require 'rails_logstasher/core_ext/object/blank'
 require 'logger'
-require 'yarder/logger'
+require 'rails_logstasher/logger'
 
-module Yarder
+module RailsLogstasher
   # Wraps any standard Logger object to provide tagging capabilities.
   #
-  # logger = Yarder::TaggedLogging.new(Logger.new(STDOUT))
+  # logger = RailsLogstasher::TaggedLogging.new(Logger.new(STDOUT))
   # logger.tagged('BCX') { logger.info 'Stuff' } # Adds BCX to the @tags array and "Stuff" to the @message
   # logger.tagged('BCX', "Jason") { logger.info 'Stuff' } # Adds 'BCX' and 'Jason' to the @tags array and "Stuff"
   # to the @message
   # logger.tagged('BCX') { logger.tagged('Jason') { logger.info 'Stuff' } } # Adds 'BCX' and 'Jason' to the @tags
   # array and "Stuff" to the @message
   #
-  # This is used by the default Rails.logger when the Yarder gem is added to a rails application
+  # This is used by the default Rails.logger when the RailsLogstasher gem is added to a rails application
   # to make it easy to stamp JSON logs with subdomains, request ids, and anything else
   # to aid debugging of multi-user production applications.
   module TaggedLogging
@@ -20,10 +20,10 @@ module Yarder
       # This method is invoked when a log event occurs.
       def call(severity, timestamp, progname, msg)
         @entry = nil
-        if msg.class == Yarder::Event
+        if msg.class == RailsLogstasher::Event
           @entry = msg
         else
-          @entry = Yarder::Event.new(Rails.logger)
+          @entry = RailsLogstasher::Event.new(Rails.logger)
           @entry.message = msg
         end
         @entry.fields['severity'] = severity

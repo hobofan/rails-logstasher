@@ -1,4 +1,4 @@
-module Yarder
+module RailsLogstasher
 
   # Basically a wrapper for a LogStash event that keeps track of if it was created from a rack
   # middle-ware or not. This is important when it comes to deciding when to write the log

@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 # This file is copied verbatim from ActiveSupport for compatibility
-# should yarder be used outside of a Rails project. Therefor we
+# should rails_logstasher be used outside of a Rails project. Therefor we
 # won't process this file if ActiveSupport is already defined
 unless defined?(ActiveSupport)
   class Object

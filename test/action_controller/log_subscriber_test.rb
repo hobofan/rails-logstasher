@@ -12,9 +12,9 @@ class ACLogSubscriberTest < ActionController::TestCase
     ActionController::Base.page_cache_directory = @cache_path
     @controller.cache_store = :file_store, @cache_path
 
-    Yarder::ActionController::LogSubscriber.attach_to :action_controller
-    Yarder.log_entries[Thread.current] = LogStash::Event.new
-    @log_entry = Yarder.log_entries[Thread.current]
+    RailsLogstasher::ActionController::LogSubscriber.attach_to :action_controller
+    RailsLogstasher.log_entries[Thread.current] = LogStash::Event.new
+    @log_entry = RailsLogstasher.log_entries[Thread.current]
   end
 
   def teardown

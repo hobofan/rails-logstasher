@@ -1,6 +1,6 @@
 require 'logger'
 
-module Yarder
+module RailsLogstasher
 
   # Based on the ActiveSupport::Logger (Formerly known as BufferedLogger)
   class Logger < ::Logger

@@ -7,7 +7,7 @@
 
 Logstash Based Replacement logging system for Ruby on Rails.
 This is a fork from https://github.com/rurounijones/yarder.
-`
+
 This gem will create JSON based log entries designed for consumption by Logstash version 1.2.
 The JSON will contain the same information as can be found in the default rails logging output.
 

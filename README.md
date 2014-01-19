@@ -46,6 +46,9 @@ module MyApp
     # Set a logger compatible with the standard ruby logger to be used by RailsLogstasher
     config.logger = RailsLogstasher::Logger.new(Rails.root.join('log',"#{Rails.env}.log").to_s)
 
+    # Optionally process log entries before they are written to the log
+    RailsLogstasher.config[:entry_processor] = Proc.new {|entry| ... do stuff with entry...}
+
   end
 end
 ```

@@ -30,8 +30,18 @@ module RailsLogstasher
         @entry.type = @log_type
         process_tags(current_tags)
         process_tags(current_request_tags)
+
+        process_entry
+
         #TODO Should we do anything with progname? What about source?
         super(severity, timestamp, progname, @entry.to_json)
+      end
+
+      def process_entry
+        entry_processor = RailsLogstasher.config[:entry_processor]
+        return unless entry_processor && entry_processor.class == Proc
+
+        entry_processor.call @entry
       end
 
       def tagged(*tags)
@@ -94,7 +104,7 @@ module RailsLogstasher
       logger.extend(self)
     end
 
-    delegate :push_tags, :push_request_tags, :pop_tags, :clear_tags!, :log_type=, to: :formatter
+    delegate :push_tags, :push_request_tags, :pop_tags, :clear_tags!, :log_type=, :to => :formatter
 
     def tagged(*tags)
       formatter.tagged(*tags) { yield self }

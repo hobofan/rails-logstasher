@@ -38,10 +38,8 @@ module RailsLogstasher
       end
 
       def process_entry
-        entry_processor = RailsLogstasher.config[:entry_processor]
-        return unless entry_processor && entry_processor.class == Proc
-
-        entry_processor.call @entry
+        return unless @log_entry_processor && @log_entry_processor.class == Proc
+        @log_entry_processor.call @entry
       end
 
       def tagged(*tags)
@@ -94,13 +92,18 @@ module RailsLogstasher
         @log_type = log_type
       end
 
+      def log_entry_processor=(log_entry_processor)
+        @log_entry_processor = log_entry_processor
+      end
+
     end
 
-    def self.new(logger, log_type)
+    def self.new(logger, log_type, log_entry_processor=nil)
       # Ensure we set a default formatter so we aren't extending nil!
       logger.formatter ||= ActiveSupport::Logger::SimpleFormatter.new
       logger.formatter.extend Formatter
       logger.formatter.log_type = log_type
+      logger.formatter.log_entry_processor = log_entry_processor
       logger.extend(self)
     end
 

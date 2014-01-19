@@ -31,7 +31,7 @@ module RailsLogstasher
       # Take the current logger and replace it with itself wrapped by the
       # RailsLogstasher::TaggedLogging class
       app.config.log_type = 'rails' unless app.config.respond_to? :log_type
-      app.config.logger = RailsLogstasher::TaggedLogging.new(app.config.logger, app.config.log_type)
+      app.config.logger = RailsLogstasher::TaggedLogging.new(app.config.logger, app.config.log_type, app.config.log_entry_processor)
     end
 
 

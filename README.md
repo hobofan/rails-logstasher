@@ -46,8 +46,11 @@ module MyApp
     # Set a logger compatible with the standard ruby logger to be used by RailsLogstasher
     config.logger = RailsLogstasher::Logger.new(Rails.root.join('log',"#{Rails.env}.log").to_s)
 
+    # Optionally specify a log type tag (default is 'rails')
+    config.log_type = 'my_type'
+
     # Optionally process log entries before they are written to the log
-    RailsLogstasher.config[:entry_processor] = Proc.new {|entry| ... do stuff with entry...}
+    config.log_entry_processor = Proc.new {|entry| ... do stuff with entry...}
 
   end
 end
@@ -76,6 +79,18 @@ module MyApp
 
     # Set a different type for the events
     config.log_type = 'my_type'
+
+  end
+end
+```
+
+It is possible to configure a Proc to custom handle log entries before they are written to the log file, like so:
+
+```
+module MyApp
+  class Application < Rails::Application
+
+    config.log_entry_processor = Proc.new {|entry| entry.fields['my_custom_field'] = 'hello' }
 
   end
 end

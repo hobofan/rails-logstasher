@@ -60,13 +60,13 @@ module RailsLogstasher
       end
 
       def process_tags(tags)
-        tags.each do |tag|
+        tags.each_with_index do |tag, tag_i|
           if tag.class == Hash
             tag.each_pair do |k,v|
               @entry.fields[k] = v
             end
           else
-            @entry.tags << tag
+            @entry.fields["tag_#{tag_i}"] = tag
           end
         end
       end

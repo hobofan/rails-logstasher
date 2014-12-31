@@ -58,8 +58,8 @@ module RailsLogstasher
       end
 
       # We then subscribe using the rails-logstasher versions of the default rails LogSubscribers
-      RailsLogstasher::ActionController::LogSubscriber.attach_to :action_controller
-      RailsLogstasher::ActionView::LogSubscriber.attach_to :action_view
+      # RailsLogstasher::ActionController::LogSubscriber.attach_to :action_controller
+      # RailsLogstasher::ActionView::LogSubscriber.attach_to :action_view
       RailsLogstasher::ActiveRecord::LogSubscriber.attach_to :active_record if defined?(ActiveRecord)
       RailsLogstasher::ActiveResource::LogSubscriber.attach_to :active_resource if defined?(ActiveResource)
 

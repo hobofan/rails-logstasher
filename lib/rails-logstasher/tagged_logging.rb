@@ -34,7 +34,7 @@ module RailsLogstasher
         process_entry
 
         #TODO Should we do anything with progname? What about source?
-        super(severity, timestamp, progname, @entry.to_json)
+        super(severity, timestamp, progname, @entry.to_hash)
       end
 
       def process_entry

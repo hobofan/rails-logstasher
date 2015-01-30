@@ -5,7 +5,7 @@ module RailsLogstasher
   class Event
 
     extend Forwardable
-    def_delegators :@logstash_event, :fields, :message=, :source=, :type=, :tags, :to_json
+    def_delegators :@logstash_event, :fields, :message=, :source=, :type=, :tags, :to_json, :to_hash
 
     def initialize(logger, rack = false)
       @logger = logger
